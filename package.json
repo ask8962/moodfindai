@@ -46,6 +46,7 @@
     "expo": "latest",
     "expo-linear-gradient": "latest",
     "firebase": "latest",
+    "framer-motion": "^12.23.26",
     "input-otp": "1.4.1",
     "lucide-react": "^0.454.0",
     "next": "^16.1.1",
