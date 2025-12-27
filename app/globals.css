@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
 
 /* ============================================
    PREMIUM DESIGN SYSTEM - Vercel/Linear Inspired
@@ -12,42 +12,42 @@
   /* Light Mode (Default) */
   --background: 0 0% 100%;
   --foreground: 222 47% 11%;
-  
+
   --card: 0 0% 100%;
   --card-foreground: 222 47% 11%;
-  
+
   --popover: 0 0% 100%;
   --popover-foreground: 222 47% 11%;
-  
+
   /* Refined Purple Accent */
   --primary: 262 83% 58%;
   --primary-foreground: 0 0% 100%;
-  
+
   --secondary: 210 40% 96%;
   --secondary-foreground: 222 47% 11%;
-  
+
   --muted: 210 40% 96%;
   --muted-foreground: 215 16% 47%;
-  
+
   --accent: 210 40% 96%;
   --accent-foreground: 222 47% 11%;
-  
+
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
-  
+
   --border: 214 32% 91%;
   --input: 214 32% 91%;
   --ring: 262 83% 58%;
-  
+
   --radius: 0.75rem;
-  
+
   /* Chart colors */
   --chart-1: 262 83% 58%;
   --chart-2: 173 58% 39%;
   --chart-3: 197 37% 24%;
   --chart-4: 43 74% 66%;
   --chart-5: 27 87% 67%;
-  
+
   /* Sidebar */
   --sidebar-background: 0 0% 98%;
   --sidebar-foreground: 222 47% 11%;
@@ -62,32 +62,32 @@
 .dark {
   --background: 222 47% 6%;
   --foreground: 210 40% 98%;
-  
+
   --card: 222 47% 8%;
   --card-foreground: 210 40% 98%;
-  
+
   --popover: 222 47% 8%;
   --popover-foreground: 210 40% 98%;
-  
+
   --primary: 262 83% 65%;
   --primary-foreground: 0 0% 100%;
-  
+
   --secondary: 215 25% 15%;
   --secondary-foreground: 210 40% 98%;
-  
+
   --muted: 215 25% 15%;
   --muted-foreground: 215 20% 65%;
-  
+
   --accent: 215 25% 15%;
   --accent-foreground: 210 40% 98%;
-  
+
   --destructive: 0 62% 50%;
   --destructive-foreground: 0 0% 100%;
-  
+
   --border: 215 25% 18%;
   --input: 215 25% 18%;
   --ring: 262 83% 65%;
-  
+
   /* Sidebar dark mode */
   --sidebar-background: 222 47% 8%;
   --sidebar-foreground: 210 40% 98%;
@@ -152,6 +152,7 @@ body {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -162,6 +163,7 @@ body {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -173,6 +175,7 @@ body {
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -184,6 +187,7 @@ body {
     opacity: 0;
     transform: scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -207,12 +211,35 @@ body {
 }
 
 /* Stagger animations for lists */
-.stagger-1 { animation-delay: 0.1s; opacity: 0; }
-.stagger-2 { animation-delay: 0.2s; opacity: 0; }
-.stagger-3 { animation-delay: 0.3s; opacity: 0; }
-.stagger-4 { animation-delay: 0.4s; opacity: 0; }
-.stagger-5 { animation-delay: 0.5s; opacity: 0; }
-.stagger-6 { animation-delay: 0.6s; opacity: 0; }
+.stagger-1 {
+  animation-delay: 0.1s;
+  opacity: 0;
+}
+
+.stagger-2 {
+  animation-delay: 0.2s;
+  opacity: 0;
+}
+
+.stagger-3 {
+  animation-delay: 0.3s;
+  opacity: 0;
+}
+
+.stagger-4 {
+  animation-delay: 0.4s;
+  opacity: 0;
+}
+
+.stagger-5 {
+  animation-delay: 0.5s;
+  opacity: 0;
+}
+
+.stagger-6 {
+  animation-delay: 0.6s;
+  opacity: 0;
+}
 
 /* ============================================
    COMPONENT STYLES
@@ -241,7 +268,7 @@ body {
 
 /* Subtle background pattern (optional) */
 .bg-grid-pattern {
-  background-image: 
+  background-image:
     linear-gradient(to right, hsl(var(--border) / 0.5) 1px, transparent 1px),
     linear-gradient(to bottom, hsl(var(--border) / 0.5) 1px, transparent 1px);
   background-size: 24px 24px;
@@ -249,21 +276,17 @@ body {
 
 /* Hero gradient background (subtle) */
 .hero-gradient {
-  background: linear-gradient(
-    180deg,
-    hsl(var(--background)) 0%,
-    hsl(262 83% 58% / 0.03) 50%,
-    hsl(var(--background)) 100%
-  );
+  background: linear-gradient(180deg,
+      hsl(var(--background)) 0%,
+      hsl(262 83% 58% / 0.03) 50%,
+      hsl(var(--background)) 100%);
 }
 
 .dark .hero-gradient {
-  background: linear-gradient(
-    180deg,
-    hsl(var(--background)) 0%,
-    hsl(262 83% 65% / 0.08) 50%,
-    hsl(var(--background)) 100%
-  );
+  background: linear-gradient(180deg,
+      hsl(var(--background)) 0%,
+      hsl(262 83% 65% / 0.08) 50%,
+      hsl(var(--background)) 100%);
 }
 
 /* ============================================
@@ -310,6 +333,7 @@ body {
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -331,6 +355,7 @@ body {
 }
 
 @media (pointer: coarse) {
+
   button,
   .clickable {
     min-height: 48px;
