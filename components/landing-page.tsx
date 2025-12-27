@@ -59,21 +59,21 @@ export default function LandingPage() {
 
   const testimonials = [
     {
-      name: "Sarah M.",
+      name: "Sarah ",
       role: "Mindfulness Coach",
       content: "MoodifyMe has transformed how I understand my emotional patterns. The insights are incredibly valuable.",
       avatar: "S",
       rating: 5,
     },
     {
-      name: "James L.",
+      name: "Anukalp Gupta",
       role: "Software Developer",
       content: "As someone who struggles with work-life balance, this app helps me stay grounded and focused.",
       avatar: "J",
       rating: 5,
     },
     {
-      name: "Emily R.",
+      name: "Anupam",
       role: "Graduate Student",
       content: "The mood-based task suggestions are genius. I'm finally working with my emotions, not against them.",
       avatar: "E",
@@ -92,8 +92,8 @@ export default function LandingPage() {
     <div className="min-h-screen bg-background overflow-hidden">
       {/* Header */}
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-          ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm"
-          : "bg-transparent"
+        ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm"
+        : "bg-transparent"
         }`}>
         <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
@@ -276,7 +276,7 @@ export default function LandingPage() {
                   {/* Welcome */}
                   <div className="flex items-center justify-between">
                     <div>
-                      <h3 className="text-lg font-semibold text-foreground">Welcome back, Sarah 👋</h3>
+                      <h3 className="text-lg font-semibold text-foreground">Welcome back, Anukalp 👋</h3>
                       <p className="text-sm text-muted-foreground">How are you feeling today?</p>
                     </div>
                     <div className="flex gap-2">
