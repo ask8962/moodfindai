@@ -9,9 +9,11 @@ import TaskPlanner from "@/components/task-planner"
 import QuickStats from "@/components/quick-stats"
 import RecentJournals from "@/components/recent-journals"
 import MoodTunes from "@/components/mood-tunes"
+import ZenMode from "@/components/zen-mode"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Sparkles, Sun, Cloud, Moon, Flame, Zap, Star } from "lucide-react"
+import { Sparkles, Sun, Cloud, Moon, Flame, Zap, Star, Wind } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
+import { Button } from "@/components/ui/button"
 
 export default function DashboardPage() {
   const { user } = useAuth()
@@ -20,6 +22,11 @@ export default function DashboardPage() {
   const [loading, setLoading] = useState(true)
   const [greeting, setGreeting] = useState({ text: "Hello", icon: Sun })
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [showZenMode, setShowZenMode] = useState(false)
+  const [zenAutoTriggered, setZenAutoTriggered] = useState(false)
+
+  // Negative moods that trigger Zen Mode suggestion
+  const negativeMoods = ["😰", "😢", "😠", "🥺", "🤯"]
 
   // Track mouse for parallax effect
   useEffect(() => {
@@ -83,6 +90,14 @@ export default function DashboardPage() {
 
       setCurrentMood(mood)
       setTodayMoodLogged(true)
+
+      // Auto-trigger Zen Mode for negative moods
+      if (negativeMoods.includes(mood)) {
+        setTimeout(() => {
+          setZenAutoTriggered(true)
+          setShowZenMode(true)
+        }, 1500)
+      }
     } catch (error) {
       console.error("Error saving mood:", error)
     }
@@ -423,7 +438,42 @@ export default function DashboardPage() {
             <RecentJournals />
           </motion.div>
         </div>
+
+        {/* Zen Mode Button - Floating Action Button */}
+        <motion.div
+          className="fixed bottom-6 right-6 z-40"
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 1, type: "spring" }}
+        >
+          <Button
+            onClick={() => {
+              setZenAutoTriggered(false)
+              setShowZenMode(true)
+            }}
+            className="w-14 h-14 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 shadow-lg shadow-purple-500/30 flex items-center justify-center"
+          >
+            <Wind className="w-6 h-6 text-white" />
+          </Button>
+          <motion.p
+            className="absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs bg-foreground text-background px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+            initial={{ opacity: 0 }}
+            whileHover={{ opacity: 1 }}
+          >
+            Zen Mode
+          </motion.p>
+        </motion.div>
       </div>
+
+      {/* Zen Mode Overlay */}
+      <ZenMode
+        isOpen={showZenMode}
+        onClose={() => {
+          setShowZenMode(false)
+          setZenAutoTriggered(false)
+        }}
+        autoTriggered={zenAutoTriggered}
+      />
     </div>
   )
 }
