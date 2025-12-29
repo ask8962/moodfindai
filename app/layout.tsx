@@ -22,6 +22,11 @@ export const metadata: Metadata = {
     description: "Track your mood, plan your day, and connect with others.",
     type: "website",
   },
+  icons: {
+    icon: '/logo.png',
+    shortcut: '/logo.png',
+    apple: '/logo.png',
+  },
 }
 
 export default function RootLayout({

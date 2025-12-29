@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Brain, Heart, Users, TrendingUp, MessageCircle, BookOpen, Menu, X, ArrowRight, Check, Sparkles, Star, Quote } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import { useState, useEffect } from "react"
 
 export default function LandingPage() {
@@ -99,8 +100,13 @@ export default function LandingPage() {
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="w-9 h-9 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center shadow-lg shadow-primary/25 group-hover:shadow-primary/40 transition-shadow">
-                <Sparkles className="w-5 h-5 text-primary-foreground" />
+              <div className="relative w-9 h-9 overflow-hidden rounded-xl shadow-lg shadow-primary/25 group-hover:shadow-primary/40 transition-shadow">
+                <Image
+                  src="/logo.png"
+                  alt="MoodifyMe Logo"
+                  fill
+                  className="object-cover"
+                />
               </div>
               <span className="text-xl font-bold text-foreground">MoodifyMe</span>
             </Link>
@@ -517,8 +523,13 @@ export default function LandingPage() {
             {/* Brand */}
             <div className="col-span-2 md:col-span-1">
               <Link href="/" className="flex items-center gap-2 mb-4">
-                <div className="w-9 h-9 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center">
-                  <Sparkles className="w-5 h-5 text-primary-foreground" />
+                <div className="relative w-9 h-9 overflow-hidden rounded-xl">
+                  <Image
+                    src="/logo.png"
+                    alt="MoodifyMe Logo"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
                 <span className="text-xl font-bold text-foreground">MoodifyMe</span>
               </Link>

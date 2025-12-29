@@ -12,6 +12,7 @@ import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import Image from "next/image"
 import { Eye, EyeOff, Mail, Lock, User, Sparkles, ArrowLeft, ArrowRight, Check } from "lucide-react"
 
 export default function SignupPage() {
@@ -126,8 +127,13 @@ export default function SignupPage() {
         {/* Content */}
         <div className="relative z-10 max-w-md">
           <div className="mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary to-purple-500 rounded-2xl shadow-2xl shadow-primary/30 mb-6">
-              <Sparkles className="w-8 h-8 text-white" />
+            <div className="relative w-16 h-16 overflow-hidden rounded-2xl shadow-2xl shadow-primary/30 mb-6">
+              <Image
+                src="/logo.png"
+                alt="MoodifyMe Logo"
+                fill
+                className="object-cover"
+              />
             </div>
           </div>
 
@@ -182,8 +188,13 @@ export default function SignupPage() {
 
           {/* Logo - Mobile */}
           <div className="flex items-center gap-2 mb-8 lg:hidden">
-            <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center shadow-lg shadow-primary/25">
-              <Sparkles className="w-6 h-6 text-primary-foreground" />
+            <div className="relative w-10 h-10 overflow-hidden rounded-xl shadow-lg shadow-primary/25">
+              <Image
+                src="/logo.png"
+                alt="MoodifyMe Logo"
+                fill
+                className="object-cover"
+              />
             </div>
             <span className="text-2xl font-bold text-foreground">MoodifyMe</span>
           </div>

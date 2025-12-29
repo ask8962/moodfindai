@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Home, BarChart3, MessageCircle, BookOpen, Settings, LogOut, Menu, X, Sparkles, Sun, Moon } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { useTheme } from "next-themes"
 
@@ -37,8 +38,13 @@ export default function DashboardNav() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/dashboard" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <Sparkles className="w-5 h-5 text-primary-foreground" />
+            <div className="relative w-8 h-8 overflow-hidden rounded-lg">
+              <Image
+                src="/logo.png"
+                alt="MoodifyMe Logo"
+                fill
+                className="object-cover"
+              />
             </div>
             <span className="text-xl font-semibold text-foreground">MoodifyMe</span>
           </Link>
@@ -50,8 +56,8 @@ export default function DashboardNav() {
                 key={item.href}
                 href={item.href}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${pathname === item.href
-                    ? "bg-primary/10 text-primary"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                  ? "bg-primary/10 text-primary"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
                   }`}
               >
                 <item.icon className="w-4 h-4" />
@@ -127,8 +133,8 @@ export default function DashboardNav() {
                   key={item.href}
                   href={item.href}
                   className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${pathname === item.href
-                      ? "bg-primary/10 text-primary"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                    ? "bg-primary/10 text-primary"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
                     }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
