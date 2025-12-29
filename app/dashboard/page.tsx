@@ -10,6 +10,8 @@ import QuickStats from "@/components/quick-stats"
 import RecentJournals from "@/components/recent-journals"
 import MoodTunes from "@/components/mood-tunes"
 import ZenMode from "@/components/zen-mode"
+import { useStreaks } from "@/hooks/use-streaks"
+import AchievementsList from "@/components/achievements-list"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Sparkles, Sun, Cloud, Moon, Flame, Zap, Star, Wind } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
@@ -17,6 +19,7 @@ import { Button } from "@/components/ui/button"
 
 export default function DashboardPage() {
   const { user } = useAuth()
+  const { currentStreak, achievements, loading: streaksLoading } = useStreaks()
   const [currentMood, setCurrentMood] = useState<string | null>(null)
   const [todayMoodLogged, setTodayMoodLogged] = useState(false)
   const [loading, setLoading] = useState(true)
@@ -292,7 +295,7 @@ export default function DashboardPage() {
             >
               <Flame className="w-6 h-6 text-orange-500" />
             </motion.div>
-            <span className="text-sm font-bold text-foreground">7 day streak 🔥</span>
+            <span className="text-sm font-bold text-foreground">{currentStreak} day streak 🔥</span>
           </motion.div>
         </motion.div>
 
@@ -428,15 +431,27 @@ export default function DashboardPage() {
             <TaskPlanner currentMood={currentMood} />
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
-            whileHover={{ scale: 1.02, rotateY: -2 }}
-            style={{ transformStyle: "preserve-3d" }}
-          >
-            <RecentJournals />
-          </motion.div>
+          <div className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
+              whileHover={{ scale: 1.02, rotateY: -2 }}
+              style={{ transformStyle: "preserve-3d" }}
+            >
+              <RecentJournals />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.5 }}
+              whileHover={{ scale: 1.02, rotateY: -2 }}
+              style={{ transformStyle: "preserve-3d" }}
+            >
+              <AchievementsList achievements={achievements} loading={streaksLoading} />
+            </motion.div>
+          </div>
         </div>
 
         {/* Zen Mode Button - Floating Action Button */}
