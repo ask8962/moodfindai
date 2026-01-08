@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation"
 import { useEffect } from "react"
 import LoadingSpinner from "@/components/loading-spinner"
 import DashboardNav from "@/components/dashboard-nav"
-import { ThemeProvider } from "@/components/theme-provider"
+import ErrorBoundary from "@/components/error-boundary"
 
 export default function DashboardLayout({
   children,
@@ -32,11 +32,11 @@ export default function DashboardLayout({
   }
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-      <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background">
+      <ErrorBoundary>
         <DashboardNav />
         <main className="pt-16">{children}</main>
-      </div>
-    </ThemeProvider>
+      </ErrorBoundary>
+    </div>
   )
 }

@@ -1,108 +1,161 @@
-# MoodifyMe - Emotion-Based Daily Planner
+# MoodifyMe – Emotion-Based Daily Planner
 
-MoodifyMe is a modern, AI-powered emotional wellness companion that helps you track your moods, plan your day based on how you feel, and gain insights into your emotional well-being. Built with Next.js 14 and refined with a premium, Linear-inspired design system.
+A smart, AI-powered daily planning application that adapts to the user's emotional state, providing personalized task recommendations and emotional wellness tracking.
 
-![MoodifyMe Dashboard Preview](/landing_hero_desktop_v3_1766835803517.png)
+---
 
-## 🌟 Key Features
+## 📌 Project Overview
 
-### 🎨 Modern UI/UX
-- **Premium Design System**: Linear/Vercel-inspired aesthetic with a refined purple accent and clean typography.
-- **Dark/Light Mode**: Fully supported themes with a smooth toggle and system preference detection.
-- **Adaptive Interface**: Responsive design that looks great on desktop, tablet, and mobile.
-- **Micro-interactions**: Subtle gradients, hover lifts, and fluid animations for a polished feel.
+**MoodifyMe** is a full-stack web application designed to bridge the gap between emotional well-being and daily productivity. Unlike traditional planners that focus solely on task management, MoodifyMe uses emotion recognition to tailor task suggestions, helping users plan their day based on how they *feel*, not just what they need to do.
 
-### 🧠 Emotional Intelligence
-- **Mood Tracking**: Simple, emoji-based mood logging to capture how you feel in seconds.
-- **Smart Task Planner**: AI-powered task suggestions tailored to your current emotional state (e.g., restorative tasks when you're tired, challenging ones when you're confident).
-- **Personalized Insights**: Visual displays of your mood trends and streak tracking.
+The application enables users to log their current mood, receive AI-curated task recommendations, track emotional patterns over time, and maintain a private digital journal—all within a modern, responsive interface.
 
-### 🔐 Secure & Social
-- **Authentication**: Secure login/signup via Email or Google (Firebase Auth).
-- **Journaling**: A private space to document your thoughts and daily experiences.
-- **Community**: (Coming Soon) Connect with others on similar emotional journeys.
+---
 
-## 🛠️ Tech Stack
+## 🎯 Problem Statement
 
-- **Framework**: [Next.js 14](https://nextjs.org/) (App Router)
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/) + CSS Variables
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **Backend/Auth**: [Firebase](https://firebase.google.com/) (Firestore, Auth)
-- **UI Components**: [Radix UI](https://www.radix-ui.com/) primitives
+Traditional productivity tools fail to account for the user's emotional and mental state, often leading to:
+- **Task overload** during low-energy periods
+- **Underutilization** of high-productivity windows
+- **Burnout** from ignoring emotional signals
+- **Lack of self-awareness** regarding mood patterns and triggers
 
-## 🚀 Getting Started
+There is a need for an intelligent system that integrates emotional intelligence into daily planning, promoting both productivity and mental wellness.
 
-### Prerequisites
+---
 
-- Node.js 18+ installed
-- A Firebase project set up with Auth (Email/Google) and Firestore
+## 💡 Solution Description
 
-### Installation
+MoodifyMe addresses these challenges by implementing an **emotion-aware task management system** that:
 
-1.  **Clone the repository**
-    ```bash
-    git clone https://github.com/yourusername/moodifyme.git
-    cd moodifyme
-    ```
+1. **Captures Mood Data** – Users log their current emotional state using an intuitive emoji-based interface.
+2. **Generates Smart Recommendations** – Based on the logged mood, the system suggests contextually appropriate tasks (e.g., restorative activities when stressed, challenging tasks when confident).
+3. **Tracks Emotional Trends** – Visual analytics help users identify mood patterns and correlations over time.
+4. **Provides a Safe Space** – A private journaling feature allows users to document thoughts and reflect on their experiences.
 
-2.  **Install dependencies**
-    ```bash
-    npm install
-    # or
-    yarn install
-    ```
+---
 
-3.  **Set up environment variables**
-    Create a `.env.local` file in the root directory and add your Firebase credentials:
-    ```env
-    NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
-    NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project_id.firebaseapp.com
-    NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
-    NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project_id.appspot.com
-    NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-    NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
-    ```
+## ✨ Key Features
 
-4.  **Run the development server**
-    ```bash
-    npm run dev
-    ```
+- **Emotion-Based Mood Logging** – Quick, intuitive mood capture using emoji-based selection
+- **AI-Powered Task Recommendations** – Personalized daily task suggestions based on emotional state
+- **Mood Analytics Dashboard** – Visual representation of mood trends, streaks, and patterns
+- **Private Digital Journal** – Secure space for personal reflection and thought documentation
+- **Responsive Design** – Seamless experience across desktop, tablet, and mobile devices
+- **Dark/Light Theme Support** – User-preferred theme with system detection
+- **Secure Authentication** – Email and Google OAuth-based login via Firebase
+- **Real-Time Data Sync** – Cloud-based storage with Firebase Firestore
 
-5.  **Open your browser**
-    Navigate to `http://localhost:3000` to see the app in action.
+---
 
-## 📂 Project Structure
+## 🛠️ Technology Stack
+
+| Layer | Technology |
+|-------|------------|
+| **Frontend Framework** | Next.js 14 (App Router) |
+| **Language** | TypeScript |
+| **Styling** | Tailwind CSS |
+| **UI Components** | Radix UI Primitives |
+| **Backend & Database** | Firebase (Firestore, Authentication) |
+| **Hosting & Deployment** | Vercel |
+| **Icons** | Lucide React |
+
+---
+
+## 🏗️ System Architecture
 
 ```
-moodifyme/
-├── app/                  # Next.js App Router pages
-│   ├── dashboard/        # Protected dashboard routes
-│   ├── login/            # Authentication pages
-│   ├── signup/           # Authentication pages
-│   ├── layout.tsx        # Root layout with ThemeProvider
-│   └── page.tsx          # Landing page
-├── components/           # Reusable UI components
-│   ├── ui/               # Base UI primitives (buttons, cards, etc.)
-│   ├── landing-page.tsx  # Main landing page component
-│   └── dashboard-nav.tsx # Dashboard navigation
-├── lib/                  # Utilities and configurations
-│   ├── firebase.ts       # Firebase initialization
-│   └── utils.ts          # Helper functions
-├── public/               # Static assets
-└── styles/               # Global styles (globals.css)
+┌─────────────────────────────────────────────────────────────────┐
+│                         CLIENT LAYER                            │
+│  ┌─────────────────────────────────────────────────────────┐   │
+│  │              Next.js 14 (React + TypeScript)            │   │
+│  │   ┌─────────────┐  ┌─────────────┐  ┌─────────────┐    │   │
+│  │   │  Dashboard  │  │   Journal   │  │  Analytics  │    │   │
+│  │   └─────────────┘  └─────────────┘  └─────────────┘    │   │
+│  └─────────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                      AUTHENTICATION LAYER                       │
+│  ┌─────────────────────────────────────────────────────────┐   │
+│  │                    Firebase Auth                        │   │
+│  │         (Email/Password + Google OAuth 2.0)             │   │
+│  └─────────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                        DATA LAYER                               │
+│  ┌─────────────────────────────────────────────────────────┐   │
+│  │               Firebase Firestore (NoSQL)                │   │
+│  │   ┌─────────┐  ┌─────────────┐  ┌──────────────┐       │   │
+│  │   │  Users  │  │  Mood Logs  │  │  Journal     │       │   │
+│  │   │         │  │             │  │  Entries     │       │   │
+│  │   └─────────┘  └─────────────┘  └──────────────┘       │   │
+│  └─────────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                      DEPLOYMENT LAYER                           │
+│  ┌─────────────────────────────────────────────────────────┐   │
+│  │                   Vercel Platform                       │   │
+│  │           (CI/CD, Edge Functions, CDN)                  │   │
+│  └─────────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
-## 🎨 Design System
+---
 
-Our design system is built on a foundation of refined variables for light and dark modes.
+## 🔗 Live Demo
 
-- **Typography**: Inter (primary sans-serif) with a clear type scale.
-- **Colors**:
-    - Primary: `#8B5CF6` (Violet-500)
-    - Backgrounds: Clean white (`#FFFFFF`) or deep slate (`#0F172A`)
-- **Spacing**: Consistent 4px/8px grid system.
+**Production URL:** [https://moodfindai.vercel.app/](https://moodfindai.vercel.app/)
+
+> The application is fully deployed and accessible. Create an account to explore all features.
+
+---
+
+## 📈 Project Status & Future Scope
+
+### Current Status
+✅ **Completed & Deployed** – Core features are fully functional and publicly accessible.
+
+### Implemented Features
+- [x] User authentication (Email + Google OAuth)
+- [x] Mood logging and tracking
+- [x] AI-based task recommendations
+- [x] Analytics dashboard with trend visualization
+- [x] Private journaling system
+- [x] Responsive UI with theme support
+
+### Future Enhancements
+- [ ] **Community Features** – Connect with users on similar emotional journeys
+- [ ] **Zen Mode** – Guided breathing exercises for stress relief
+- [ ] **Push Notifications** – Mood check-in reminders
+- [ ] **Export Functionality** – Download mood reports as PDF
+- [ ] **Calendar Integration** – Sync with Google Calendar
+- [ ] **Mobile Application** – Native iOS and Android apps using Capacitor
+
+---
+
+## 👨‍💻 Developer Details
+
+| Field | Details |
+|-------|---------|
+| **Developer** | Ganu Kumar |
+| **Email** | ganuganuk76@gmail.com |
+| **GitHub** | [github.com/ask8962](https://github.com/ask8962/moodfindai) |
+| **LinkedIn** | [linkedin.com/in/anukalp-gupta-23b4b7319](https://www.linkedin.com/in/anukalp-gupta-23b4b7319/) |
+
+---
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is developed for educational purposes as part of a college curriculum. All rights reserved.
+
+---
+
+<p align="center">
+  <i>Built with ❤️ using Next.js, TypeScript, and Firebase</i>
+</p>

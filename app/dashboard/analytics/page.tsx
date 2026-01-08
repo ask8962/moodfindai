@@ -6,6 +6,7 @@ import { collection, query, where, getDocs } from "firebase/firestore"
 import { db } from "@/lib/firebase"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { TrendingUp, Calendar, Target, Heart } from "lucide-react"
+import { LineChart, Line, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts"
 
 export default function AnalyticsPage() {
   const { user } = useAuth()
@@ -199,20 +200,56 @@ export default function AnalyticsPage() {
         </Card>
       </div>
 
-      {/* Charts Placeholder */}
+      {/* Charts */}
       <div className="grid lg:grid-cols-2 gap-8">
         <Card className="glass-effect border-white/10">
           <CardHeader>
             <CardTitle className="text-white">Mood Trend (30 Days)</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="h-64 flex items-center justify-center text-gray-400">
-              <div className="text-center">
-                <TrendingUp className="w-16 h-16 mx-auto mb-4 text-purple-400" />
-                <p>Mood trend chart will appear here</p>
-                <p className="text-sm">Start logging moods to see your patterns</p>
+            {moodData.length > 0 ? (
+              <div className="h-64">
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={moodData}>
+                    <XAxis
+                      dataKey="date"
+                      stroke="#6b7280"
+                      tick={{ fill: '#9ca3af', fontSize: 12 }}
+                    />
+                    <YAxis
+                      domain={[0, 10]}
+                      stroke="#6b7280"
+                      tick={{ fill: '#9ca3af', fontSize: 12 }}
+                    />
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        border: '1px solid rgba(139, 92, 246, 0.3)',
+                        borderRadius: '8px',
+                      }}
+                      labelStyle={{ color: '#fff' }}
+                      itemStyle={{ color: '#a78bfa' }}
+                    />
+                    <Line
+                      type="monotone"
+                      dataKey="moodScore"
+                      stroke="#8b5cf6"
+                      strokeWidth={2}
+                      dot={{ fill: '#8b5cf6', strokeWidth: 2, r: 4 }}
+                      activeDot={{ r: 6, stroke: '#a78bfa', strokeWidth: 2 }}
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
               </div>
-            </div>
+            ) : (
+              <div className="h-64 flex items-center justify-center text-gray-400">
+                <div className="text-center">
+                  <TrendingUp className="w-16 h-16 mx-auto mb-4 text-purple-400" />
+                  <p>No mood data yet</p>
+                  <p className="text-sm">Start logging moods to see your patterns</p>
+                </div>
+              </div>
+            )}
           </CardContent>
         </Card>
 
@@ -221,13 +258,41 @@ export default function AnalyticsPage() {
             <CardTitle className="text-white">Task Completion by Mood</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="h-64 flex items-center justify-center text-gray-400">
-              <div className="text-center">
-                <Target className="w-16 h-16 mx-auto mb-4 text-blue-400" />
-                <p>Task completion chart will appear here</p>
-                <p className="text-sm">Add tasks to see productivity insights</p>
+            {taskData.length > 0 ? (
+              <div className="h-64">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={taskData}>
+                    <XAxis
+                      dataKey="mood"
+                      stroke="#6b7280"
+                      tick={{ fill: '#9ca3af', fontSize: 12 }}
+                    />
+                    <YAxis
+                      stroke="#6b7280"
+                      tick={{ fill: '#9ca3af', fontSize: 12 }}
+                    />
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        border: '1px solid rgba(59, 130, 246, 0.3)',
+                        borderRadius: '8px',
+                      }}
+                      labelStyle={{ color: '#fff' }}
+                    />
+                    <Bar dataKey="completed" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="total" fill="#1e3a5f" radius={[4, 4, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
               </div>
-            </div>
+            ) : (
+              <div className="h-64 flex items-center justify-center text-gray-400">
+                <div className="text-center">
+                  <Target className="w-16 h-16 mx-auto mb-4 text-blue-400" />
+                  <p>No task data yet</p>
+                  <p className="text-sm">Add tasks to see productivity insights</p>
+                </div>
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>

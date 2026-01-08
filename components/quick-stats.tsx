@@ -58,7 +58,7 @@ export default function QuickStats({ currentMood }: QuickStatsProps) {
         weeklyMoods: moodsSnapshot.size,
         completedTasks: tasksSnapshot.size,
         journalEntries: journalSnapshot.size,
-        moodBuddies: Math.floor(Math.random() * 50) + 10, // Simulated for demo
+        moodBuddies: 0, // TODO: Implement social feature to show real connections
       })
     } catch (error) {
       console.error("Error fetching stats:", error)

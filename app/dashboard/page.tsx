@@ -33,14 +33,24 @@ export default function DashboardPage() {
 
   // Track mouse for parallax effect
   useEffect(() => {
+    let requestId: number
+
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth - 0.5) * 20,
-        y: (e.clientY / window.innerHeight - 0.5) * 20,
+      // Use requestAnimationFrame to throttle updates
+      cancelAnimationFrame(requestId)
+      requestId = requestAnimationFrame(() => {
+        setMousePosition({
+          x: (e.clientX / window.innerWidth - 0.5) * 20,
+          y: (e.clientY / window.innerHeight - 0.5) * 20,
+        })
       })
     }
+
     window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove)
+      cancelAnimationFrame(requestId)
+    }
   }, [])
 
   useEffect(() => {

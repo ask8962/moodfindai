@@ -69,12 +69,24 @@ export default function ChatPage() {
   }
 
   const sendMessage = async () => {
-    if (!user || !newMessage.trim()) return
+    const trimmedMessage = newMessage.trim()
+
+    // Validate message
+    if (!user || !trimmedMessage) return
+
+    if (trimmedMessage.length > 500) {
+      toast({
+        title: "Message too long",
+        description: "Please keep your message under 500 characters.",
+        variant: "destructive",
+      })
+      return
+    }
 
     setSending(true)
     try {
       await addDoc(collection(db, "chat"), {
-        message: newMessage.trim(),
+        message: trimmedMessage,
         userName: user.displayName || "Anonymous User",
         timestamp: new Date(),
         userId: user.uid,
@@ -138,9 +150,8 @@ export default function ChatPage() {
                   className={`flex ${message.userId === user?.uid ? "justify-end" : "justify-start"}`}
                 >
                   <div
-                    className={`max-w-xs md:max-w-md px-4 py-3 rounded-lg ${
-                      message.userId === user?.uid ? "bg-purple-600 text-white" : "bg-white/10 text-gray-100"
-                    }`}
+                    className={`max-w-xs md:max-w-md px-4 py-3 rounded-lg ${message.userId === user?.uid ? "bg-purple-600 text-white" : "bg-white/10 text-gray-100"
+                      }`}
                   >
                     <div className="flex items-center justify-between gap-2 mb-1">
                       <span className="text-xs font-medium">

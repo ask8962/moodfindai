@@ -4,16 +4,22 @@ import { useState, useEffect } from "react"
 import { collection, query, where, onSnapshot, orderBy, limit } from "firebase/firestore"
 import { db } from "@/lib/firebase"
 import { useAuth } from "@/lib/auth-context"
+import type { MoodEntry, Task, ChatMessage } from "@/types"
 
 export function useRealtimeMoods() {
   const { user } = useAuth()
-  const [moods, setMoods] = useState<any[]>([])
+  const [moods, setMoods] = useState<MoodEntry[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     if (!user) return
 
-    const q = query(collection(db, "moods"), where("userId", "==", user.uid), orderBy("timestamp", "desc"), limit(30))
+    const q = query(
+      collection(db, "moods"),
+      where("userId", "==", user.uid),
+      orderBy("timestamp", "desc"),
+      limit(30)
+    )
 
     const unsubscribe = onSnapshot(
       q,
@@ -22,7 +28,7 @@ export function useRealtimeMoods() {
           id: doc.id,
           ...doc.data(),
           timestamp: doc.data().timestamp?.toDate() || new Date(),
-        }))
+        })) as MoodEntry[]
         setMoods(moodsData)
         setLoading(false)
       },
@@ -40,16 +46,25 @@ export function useRealtimeMoods() {
 
 export function useRealtimeTasks(moodFilter?: string) {
   const { user } = useAuth()
-  const [tasks, setTasks] = useState<any[]>([])
+  const [tasks, setTasks] = useState<Task[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     if (!user) return
 
-    let q = query(collection(db, "tasks"), where("userId", "==", user.uid))
+    let q = query(
+      collection(db, "tasks"),
+      where("userId", "==", user.uid),
+      orderBy("createdAt", "desc")
+    )
 
     if (moodFilter) {
-      q = query(q, where("mood", "==", moodFilter))
+      q = query(
+        collection(db, "tasks"),
+        where("userId", "==", user.uid),
+        where("mood", "==", moodFilter),
+        orderBy("createdAt", "desc")
+      )
     }
 
     const unsubscribe = onSnapshot(
@@ -59,7 +74,7 @@ export function useRealtimeTasks(moodFilter?: string) {
           id: doc.id,
           ...doc.data(),
           createdAt: doc.data().createdAt?.toDate() || new Date(),
-        }))
+        })) as Task[]
         setTasks(tasksData)
         setLoading(false)
       },

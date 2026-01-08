@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { useAuth } from "@/lib/auth-context"
-import { collection, query, where, getDocs, limit } from "firebase/firestore"
+import { collection, query, where, getDocs, limit, orderBy } from "firebase/firestore"
 import { db } from "@/lib/firebase"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -32,16 +32,18 @@ export default function RecentJournals() {
     if (!user) return
 
     try {
-      const journalsQuery = query(collection(db, "journal"), where("userId", "==", user.uid), limit(3))
+      const journalsQuery = query(
+        collection(db, "journal"),
+        where("userId", "==", user.uid),
+        orderBy("createdAt", "desc"),
+        limit(3)
+      )
       const querySnapshot = await getDocs(journalsQuery)
       const journalsData = querySnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
         createdAt: doc.data().createdAt?.toDate() || new Date(),
       })) as JournalEntry[]
-
-      // Sort by date on client side
-      journalsData.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
 
       setJournals(journalsData)
     } catch (error) {
