@@ -542,27 +542,27 @@ export default function LandingPage() {
             <div>
               <h4 className="font-semibold text-foreground mb-4">Product</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="#features" className="hover:text-foreground transition-colors">Features</Link></li>
-                <li><Link href="#pricing" className="hover:text-foreground transition-colors">Pricing</Link></li>
-                <li><Link href="#testimonials" className="hover:text-foreground transition-colors">Testimonials</Link></li>
+                <li><Link href="/features" className="hover:text-foreground transition-colors">Features</Link></li>
+                <li><Link href="/pricing" className="hover:text-foreground transition-colors">Pricing</Link></li>
+                <li><Link href="/testimonials" className="hover:text-foreground transition-colors">Testimonials</Link></li>
               </ul>
             </div>
 
             <div>
               <h4 className="font-semibold text-foreground mb-4">Company</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="#" className="hover:text-foreground transition-colors">About</Link></li>
-                <li><Link href="#" className="hover:text-foreground transition-colors">Blog</Link></li>
-                <li><Link href="#" className="hover:text-foreground transition-colors">Careers</Link></li>
+                <li><Link href="/about" className="hover:text-foreground transition-colors">About</Link></li>
+                <li><Link href="/blog" className="hover:text-foreground transition-colors">Blog</Link></li>
+                <li><Link href="/careers" className="hover:text-foreground transition-colors">Careers</Link></li>
               </ul>
             </div>
 
             <div>
               <h4 className="font-semibold text-foreground mb-4">Legal</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="#" className="hover:text-foreground transition-colors">Privacy</Link></li>
-                <li><Link href="#" className="hover:text-foreground transition-colors">Terms</Link></li>
-                <li><Link href="#" className="hover:text-foreground transition-colors">Security</Link></li>
+                <li><Link href="/privacy" className="hover:text-foreground transition-colors">Privacy</Link></li>
+                <li><Link href="/terms" className="hover:text-foreground transition-colors">Terms</Link></li>
+                <li><Link href="/security" className="hover:text-foreground transition-colors">Security</Link></li>
               </ul>
             </div>
           </div>
